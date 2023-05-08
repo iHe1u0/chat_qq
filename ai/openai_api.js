@@ -4,7 +4,6 @@ const jsonfile = require('jsonfile');
 const { Configuration, OpenAIApi } = require("openai");
 
 const dotenv = require("dotenv");
-const { client } = require("..");
 dotenv.config({ path: "config.env" });
 
 // storage.set("uid", "123");
