@@ -1,0 +1,18 @@
+{
+  "name": "chat_qq",
+  "version": "1.0.0",
+  "description": "A project for qq chat with chatgpt",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "test": "test"
+  },
+  "author": "iMorning",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "jsonfile": "^6.1.0",
+    "oicq": "^2.3.1",
+    "openai": "^3.2.1"
+  }
+}
