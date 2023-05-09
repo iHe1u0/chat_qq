@@ -5,7 +5,7 @@ This is an example chatgpt tools for qq.
 ## Install
 
 - Clone this repository to local or server
-- Change `const account = 1310393537` in `index.js` to your qq id.
+- Change `const account = process.env.QQ` in `index.js` to your qq id.
 - Run `npm run dev` and fix issus of dependency.
 - Scan QR code and login.
 
