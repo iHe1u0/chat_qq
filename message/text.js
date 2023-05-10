@@ -8,10 +8,13 @@ client.on("message.private", (event) => {
     let messages = ""
     event.message.forEach(message => {
         if (message.type == "text") {
-            messages += message.text;
+            let text = message.text
+            if (text.endsWith("请使用最新版手机QQ体验新功能")) {
+                text = text.replace("请使用最新版手机QQ体验新功能", "")
+            }
+            messages += text;
         }
     });
-    console.log("received message:" + messages);
     if (messages.length == 0) {
         event.reply(event.message, false);
         return;
@@ -21,6 +24,7 @@ client.on("message.private", (event) => {
     });
 })
 
+// group message
 client.on("message.group", (event) => {
 
 })
