@@ -23,20 +23,20 @@ let config = {
 const client = createClient(account, config);
 
 // login with qr code
-// client
-//     .on("system.login.qrcode", function (e) {
-//         this.logger.mark("扫码后按Enter完成登录")
-//         process.stdin.once("data", () => {
-//             this.login();
-//         })
-//     })
-//     .login();
+client
+    .on("system.login.qrcode", function (e) {
+        this.logger.mark("扫码后按Enter完成登录")
+        process.stdin.once("data", () => {
+            this.login();
+        })
+    })
+    .login();
 
 // login with password
-client.on("system.login.slider", function (e) {
-    console.log("输入ticket：")
-    process.stdin.once("data", ticket => this.submitSlider(String(ticket).trim()))
-}).login(process.env.password);
+// client.on("system.login.slider", function (e) {
+//     console.log("输入ticket：")
+//     process.stdin.once("data", ticket => this.submitSlider(String(ticket).trim()))
+// }).login(process.env.password);
 
 exports.client = client;
 
