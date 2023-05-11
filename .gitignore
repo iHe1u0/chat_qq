@@ -103,8 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-config.env
+# Environment data
+*.env
 
+# User data
 data/
-
-

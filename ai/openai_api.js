@@ -1,12 +1,6 @@
-const storage = require("../utils/storage");
-const jsonfile = require('jsonfile');
-
 const { Configuration, OpenAIApi } = require("openai");
 
-const dotenv = require("dotenv");
-dotenv.config({ path: "config.env" });
-
-// storage.set("uid", "123");
+require("dotenv").config();
 
 async function replyTextMessage(textMsg) {
     const configuration = new Configuration({
@@ -60,7 +54,6 @@ function handleHistory(historyData) {
     //     messages.push({ role: "user", content: input_text });
     //     messages.push({ role: "assistant", content: completion_text });
     // }
-
     // messages.push({ role: "user", content: textMsg });
 }
 

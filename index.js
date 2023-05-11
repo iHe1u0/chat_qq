@@ -7,8 +7,7 @@
 // console.log(msg);
 
 const { createClient } = require("oicq");
-const dotenv = require("dotenv");
-dotenv.config({ path: "config.env" });
+require("dotenv").config();
 const account = process.env.QQ;
 
 let config = {
