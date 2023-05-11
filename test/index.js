@@ -1,12 +1,7 @@
-const openai = require('openai');
 const readline = require('readline');
 const fs = require('fs');
-
 require("dotenv").config();
 
-// 设置必要的环境变量
-const API_KEY = process.env.OPENAI_API_KEY;
-const BASE_PATH = process.env.BASE_PATH.replace(/\/+$/, "");
 
 let history = [];
 

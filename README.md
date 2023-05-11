@@ -4,13 +4,16 @@ This is an example chatgpt tools for qq.
 
 ## How to use
 
-- Clone this repository to local or server
+- Clone this repository to local or your server.
+
+- Run `npm install oicq dotenv --save` in root path of project.
 
 - Create `.env` file and its content like below:
     ```
-    OPENAI_API_KEY=sk-xxx
-    BASE_PATH="https://api.openai.com/v1"
-    QQ=10101010110
+    openai_api_key=sk-xxxxxxxxxxxxxxxxxxxx
+    base_path="https://api.openai.com/v1"
+    qq=1234567890
+    password=**********
     ```
 
 - Run `npm run dev` and fix issus of dependency.

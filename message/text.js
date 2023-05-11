@@ -5,12 +5,13 @@ const { client } = require("../index");
 
 // personal message
 client.on("message.private", (event) => {
-    let messages = ""
+    let messages = "";
+    let sender = event.sender.user_id;
     event.message.forEach(message => {
         if (message.type == "text") {
-            let text = message.text
+            let text = message.text;
             if (text.endsWith("请使用最新版手机QQ体验新功能")) {
-                text = text.replace("请使用最新版手机QQ体验新功能", "")
+                text = text.replace("请使用最新版手机QQ体验新功能", "");
             }
             messages += text;
         }
@@ -19,7 +20,7 @@ client.on("message.private", (event) => {
         event.reply(event.message, false);
         return;
     }
-    replyTextMessage(messages).then(reply_message => {
+    replyTextMessage(sender, messages).then(reply_message => {
         event.reply(reply_message);
     });
 })
