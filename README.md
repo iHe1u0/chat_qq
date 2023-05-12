@@ -1,5 +1,7 @@
 # chat_qq
 
+English / [简体中文](./README_CN.md)
+
 This is an example chatgpt tools for qq.
 
 ## How to use
