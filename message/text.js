@@ -1,7 +1,7 @@
 "use strict"
 
 const { replyTextMessage } = require("../ai/openai_api");
-const { client } = require("../index");
+const { client } = require("../app");
 
 // personal message
 client.on("message.private", (event) => {

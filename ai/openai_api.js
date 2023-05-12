@@ -25,7 +25,7 @@ function read_history(uid) {
             console.error(err);
         }
     }
-    return null;
+    return [];
 }
 
 function save_history(uid, history) {
@@ -60,8 +60,6 @@ async function replyTextMessage(uid = 10000, received_message = "") {
         history.forEach(function (item) {
             messages.push({ role: item.role, content: item.content });
         });
-    } else {
-        history = [];
     }
     messages.push(user_role);
     try {
@@ -100,6 +98,3 @@ async function replyTextMessage(uid = 10000, received_message = "") {
 }
 
 module.exports = { replyTextMessage };
-
-
-
