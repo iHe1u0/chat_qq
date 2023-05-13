@@ -1,46 +1,68 @@
 "use strict"
 
-// const { replyTextMessage } = require("./ai/openai_api");
-// let msg=replyTextMessage("你好").then(r=>{
-//     console.log(r)
-// });
-// console.log(msg);
-
-const { createClient } = require("oicq");
+const fs = require('fs');
+const path = require('path');
+const { createClient } = require("icqq");
 require("dotenv").config();
 
-const account = process.env.qq;
-
-let config = {
+const account = parseInt(process.env.qq);
+const password = process.env.password;
+const config = {
     // trace,debug,info,warn,error,mark
     log_level: "info",
-    // 1:安卓手机 2:aPad 3:安卓手表 4:MacOS 5:iPad
+    // 1:Android Phone 2:aPad 3:Android Watch 4:MacOS 5:iPad
     platform: 3,
-    // 端口
-    port: 1124
+    // port
+    port: 1124,
+    // Cache users of group?
+    reconn_interval: false
 };
+const client = createClient(config);
 
-const client = createClient(account, config);
-
-// login with qr code
-client
-    .on("system.login.qrcode", function (e) {
-        this.logger.mark("扫码后按Enter完成登录")
-        process.stdin.once("data", () => {
-            this.login();
-        })
+client.on('system.login.slider', (e) => {
+    console.log('输入滑块地址获取的ticket后继续。\n滑块地址:    ' + e.url)
+    process.stdin.once('data', (data) => {
+        client.submitSlider(data.toString().trim());
     })
-    .login();
+});
 
-// login with password
-// client.on("system.login.slider", function (e) {
-//     console.log("输入ticket：")
-//     process.stdin.once("data", ticket => this.submitSlider(String(ticket).trim()))
-// }).login(process.env.password);
+client.on('system.login.qrcode', (e) => {
+    console.log('扫码完成后回车继续:')
+    process.stdin.once('data', () => {
+        client.login();
+    })
+});
+
+client.on('system.login.device', (e) => {
+    console.log('请选择验证方式:(1:短信验证   其他：扫码验证)')
+    process.stdin.once('data', (data) => {
+        if (data.toString().trim() === '1') {
+            client.sendSmsCode()
+            console.log('请输入手机收到的短信验证码:')
+            process.stdin.once('data', (res) => {
+                client.submitSmsCode(res.toString().trim());
+            })
+        } else {
+            console.log('扫码完成后回车继续：' + e.url);
+            process.stdin.once('data', () => {
+                client.login();
+            });
+        }
+    })
+});
+
+client.login(account, password)
 
 exports.client = client;
 
-require("./message/text");
+// Load message handler
+const message_handler_dir = path.join(__dirname, 'message');
+fs.readdirSync(message_handler_dir).forEach(file => {
+    require(path.resolve(message_handler_dir, file));
+});
+// require("./message/text");
+
+// Openai API
 require("./ai/openai_api");
 
 process.on("unhandledRejection", (reason, promise) => {
