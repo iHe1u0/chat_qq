@@ -5,9 +5,9 @@ require("dotenv").config();
 const clear_key = process.env.clear_keywords.split(",") || '清空,早安,午安,晚安';
 const openai_api_key = process.env.openai_api_key;
 const base_path = process.env.base_path || "https://api.openai.com/v1";
-const max_token = parseInt(process.env.max_token) || 2048;
 const model = process.env.model || 'gpt-3.5-turbo';
 let temperature = parseFloat(process.env.temperature) || 1.0;
+let max_token = parseInt(process.env.max_token) || 2048;
 if (temperature > 2.0 || temperature < 0.0) {
     temperature = 1.0;
 }
@@ -74,10 +74,9 @@ async function replyTextMessage(uid = 10000, received_message = "") {
         const completion = await openai.createChatCompletion({
             model: model,
             messages: messages,
-            max_tokens: max_token,
+            // max_tokens: max_token,
             temperature: temperature,
             presence_penalty: 2.0,
-            stream: false,
         });
         const reply_message = completion.data.choices[0].message.content;
         assistant_role.content = reply_message;
@@ -90,6 +89,7 @@ async function replyTextMessage(uid = 10000, received_message = "") {
     } catch (error) {
         if (error.response) {
             console.error(error.response.data);
+            return error.response.data.error.message;
         } else {
             console.error(error.message);
         }
