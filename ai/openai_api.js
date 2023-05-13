@@ -46,6 +46,14 @@ function save_history(uid, history) {
     }
 }
 
+function delete_history(uid) {
+    try {
+        fs.unlinkSync(chat_data(uid));
+    } catch (error) {
+        console.warn(error);
+    }
+}
+
 async function replyTextMessage(uid = 10000, received_message = "") {
     let history = [];
     history = read_history(uid);
@@ -93,14 +101,11 @@ async function replyTextMessage(uid = 10000, received_message = "") {
         } else {
             console.error(error.message);
         }
+        delete_history(uid);
         return error.message;
     } finally {
         if (clear_key.includes(received_message)) {
-            try {
-                fs.unlinkSync(chat_data(uid));
-            } catch (error) {
-                console.warn(error);
-            }
+            delete_history(uid);
         }
     }
 }
