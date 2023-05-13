@@ -11,9 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "gpt-3-encoder": "^1.1.4",
     "icqq": "^0.3.10",
     "jsonfile": "^6.1.0",
     "oicq": "^2.3.1",
-    "openai": "^3.2.1"
+    "openai": "^3.2.1",
+    "readline-sync": "^1.4.10"
   }
 }
