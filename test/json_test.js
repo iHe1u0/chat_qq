@@ -1,12 +1,3 @@
-function test(data) {
-    return [];
-}
+const argv = process.argv;
 
-let history = [];
-// history = null;
-
-history = test(history);
-
-history.push("hello");
-
-console.log(history);
+console.log(typeof(argv[2]));

@@ -21,12 +21,14 @@ English / [简体中文](./README.md)
     base_path="https://api.openai.com/v1"
     # Model used by default as gpt-3.5-turbo
     model=gpt-3.5-turbo
-    # Maximum number of tokens for continuous conversation, default as 2048
+    # Maximum number of tokens for continuous conversation, default as 2048(unused)
     max_token=2048
     # Temperature, value between 0~2, higher means more creativity
     temperature=2.0
     # Clear Keywords, multiple keywords separated by commas
-    clear_keywords=清空,再见
+    clear_keywords="清空,再见"
+    # Set a default system role
+    system_role=""
     ```
 4. Run `npm run dev`.
 5. If it is your first time logging in, you need to scan the code to log in. Subsequently, a cached token will be used for login until the token expires.

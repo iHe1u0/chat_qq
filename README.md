@@ -21,12 +21,14 @@
     base_path="https://api.openai.com/v1"
     # 使用的模型，默认为gpt-3.5-turbo
     model=gpt-3.5-turbo
-    # 连续对话的最大token，默认为2048
+    # 连续对话的最大token，默认为2048(未启用)
     max_token=2048
     # temperature，值在0~2之间，越高代表着更加有创造性
     temperature=2.0
     # Clear Keywords(重置对话的关键字，多个关键字中间使用英文逗号分开)
-    clear_keywords=清空,再见
+    clear_keywords="清空,再见,早安,午安,晚安"
+    # 设置一个默认规则
+    system_role=""
     ```
 4. 运行 `npm run dev`
 5. 如果是第一次登录，则需要扫码登录，后续会使用缓存在本地的token登录，直到token失效。
