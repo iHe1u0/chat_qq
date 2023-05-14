@@ -2,8 +2,14 @@
 
 const { replyTextMessage } = require("../ai/openai_api");
 const { client } = require("../app");
+require('dotenv').config();
+
+const is_private_on = process.env.private ? (process.env.private === 'true' ? true : false) : true;
 
 client.on("message.private", (event) => {
+    if (!is_private_on) {
+        return;
+    }
     let raw_message = "";
     let sender = event.sender.user_id;
     event.message.forEach(message => {

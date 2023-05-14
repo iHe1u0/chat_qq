@@ -29,6 +29,10 @@ English / [简体中文](./README.md)
     clear_keywords="清空,再见"
     # Set a default system role
     system_role=""
+    # Whether to enable private message replies (default is enabled, true = enable, false = disable)
+    private=true
+    # Whether to enable group message replies (default is disabled, true = enable, false = disable)
+    group=false
     ```
 4. Run `npm run dev`.
 5. If it is your first time logging in, you need to scan the code to log in. Subsequently, a cached token will be used for login until the token expires.

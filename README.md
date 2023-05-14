@@ -29,6 +29,10 @@
     clear_keywords="清空,再见,早安,午安,晚安"
     # 设置一个默认规则
     system_role=""
+    # 是否打开私聊回复(默认开启, 开启:true  关闭:false)
+    private=true
+    # 是否打开群消息回复(默认关闭, 开启:true  关闭:false)
+    group=true
     ```
 4. 运行 `npm run dev`
 5. 如果是第一次登录，则需要扫码登录，后续会使用缓存在本地的token登录，直到token失效。

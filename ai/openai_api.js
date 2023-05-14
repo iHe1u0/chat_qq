@@ -104,7 +104,7 @@ async function replyTextMessage(uid = 10000, received_message = "") {
         delete_history(uid);
         return error.message;
     } finally {
-        if (clear_key.includes(received_message)) {
+        if (clear_key.includes(received_message.trim())) {
             delete_history(uid);
         }
     }

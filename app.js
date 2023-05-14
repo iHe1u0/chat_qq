@@ -51,6 +51,8 @@ client.on('system.login.device', (e) => {
     })
 });
 
+client.on("system.online", ()=>console.log("Service is now online!"));
+
 client.login(account, password)
 
 exports.client = client;
@@ -60,7 +62,6 @@ const message_handler_dir = path.join(__dirname, 'message');
 fs.readdirSync(message_handler_dir).forEach(file => {
     require(path.resolve(message_handler_dir, file));
 });
-// require("./message/text");
 
 // Openai API
 require("./ai/openai_api");
