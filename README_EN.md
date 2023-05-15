@@ -20,38 +20,15 @@ English / [简体中文](./README.md)
 
 3. Run `npm install` in the root path of the project to install related dependencies.
 
-4. Create a `.env` file with the following content:
-
-```ini
-    # QQ account (required)
-    qq=xxxxxxx
-    # Password (required)
-    password=xxxxxxxx
-    # Openai Key (required)
-    openai_api_key=sk-xxxxxxxxxxxx
-    # Reverse Proxy, if not set, will be default(https://api.openai.com/v1). 
-    # It is suggested that you should change it to your own reverse proxy.
-    # This (reverse proxy) must be set up in unsupported countries or regions
-    base_path="https://api.openai.com/v1"
-    # The model used, defaults to gpt-3.5-turbo.
-    model=gpt-3.5-turbo
-    # Maximum tokens for continuous conversation, defaults to 204(unused)
-    max_token=2048
-    # Temperature value between 0.0 and 2.0, higher values are more creative.
-    temperature=2.0
-    # Clear Keywords (reset the keywords of the dialogue, separate multiple keywords with commas)
-    clear_keywords="清空,再见,早安,午安,晚安"
-    # Set a default rule
-    system_role=""
-    # Whether to open private message reply(default is on,set true to trun on and false is off)
-    private=true
-    # Whether to open group message reply(default is off)
-    group=true
-```
+4. Revise the `example.env` file and rename it to `.env`.
 
 5. Run `npm run dev`.
 
 6. If this is the first-time login, you need to scan the code to log in. Subsequently, token login will be used by caching locally. As long as you do not modify the 'devices.json' file under the data directory or change the, in theory, the token will remain valid permanently.
+
+## Contact
+
+- QQ Group: [1-2-3-机器人](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0twQYZARxuifyQgdGBadA1j0fz-Rthsx&authKey=3ztzFeeinhQFntTH6YucsapRbjWUyUSfznr1UdPdWb5F1TrrDofVEGwtu%2FNaz6Tw&noverify=0&group_code=828987674)
 
 ## License
 ```

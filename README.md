@@ -20,38 +20,15 @@
 
 3. 在项目根路径运行 `npm install` 安装相关依赖。
 
-4. 创建 `.env` 文件，内容设置如下：
-
-    ```ini
-    # QQ账号(必须)
-    qq=xxxxxxx
-    # 密码(必须)
-    password=xxxxxxxx
-    # Openai Key(必须)
-    openai_api_key=sk-xxxxxxxxxxxx
-    # 反向代理，不设置则为默认(https://api.openai.com/v1)
-    # 建议修改成你自己的反向代理(不支持的国家或者地区必须设置这个)
-    base_path="https://openai.public-api.cn/v1"
-    # 使用的模型，默认为gpt-3.5-turbo
-    model=gpt-3.5-turbo
-    # 连续对话的最大token，默认为2048(未启用)
-    max_token=2048
-    # temperature，值在0.0~2.0之间，越高代表着更加有创造性
-    temperature=2.0
-    # Clear Keywords(重置对话的关键字，多个关键字中间使用英文逗号分开)
-    clear_keywords="清空,再见,早安,午安,晚安"
-    # 设置一个默认规则
-    system_role=""
-    # 是否打开私聊回复(默认开启, 开启:true  关闭:false)
-    private=true
-    # 是否打开群消息回复(默认关闭, 开启:true  关闭:false)
-    group=true
-    ```
+4. 修改 `example.env` 并重命名为 `.env`
 
 5. 运行 `npm run dev`
 
 6. 如果是第一次登录，则需要扫码登录，后续会使用缓存在本地的token登录，data目录下的`devices.json`文件不修改或者不修改密码的话，理论上token会一直有效。
 
+## 联系我们
+
+- QQ群: [1-2-3-机器人](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0twQYZARxuifyQgdGBadA1j0fz-Rthsx&authKey=3ztzFeeinhQFntTH6YucsapRbjWUyUSfznr1UdPdWb5F1TrrDofVEGwtu%2FNaz6Tw&noverify=0&group_code=828987674)
 
 ## License
 ```
