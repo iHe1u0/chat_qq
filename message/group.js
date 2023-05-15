@@ -43,7 +43,7 @@ client.on("message.group", (event) => {
             return;
         }
         replyTextMessage(group_id + "_" + sender, raw_message).then(reply_message => {
-            event.reply(reply_message);
+            event.reply(reply_message, true);
         });
     }
 })
