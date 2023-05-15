@@ -2,41 +2,56 @@
 
 English / [简体中文](./README.md)
 
-- This project is based on the QQ robot of chatgpt. In the domestic environment, it is necessary to use a reverse proxy to bypass OpenAI's check. The specific list can be found on the official website of OpenAI: [Supported countries and territories](https://platform.openai.com/docs/supported-countries/supported-countries-and-territories).
+- This project is based on the QQ bot of chatgpt. **在不受支持的地区部署的话，注意需要使用一个反向代理绕过openai的检查**. For specific list, please refer to [Supported countries and territories](https://platformai.com/docs/supported-countries/supported-countries-and-territories) on the official website of OpenAI.
 
-- You can also use an idle mobile phone/computer/tablet to run this project. For Android devices, it is recommended to use the open-source software [Termux](https://github.com/termux/termux-app). Here is a download link for Termux that has been compiled in advance: [Lanzou Cloud](https://imorning.lanzouy.com/b071a31ng) Password: 3vxm. Please search for tutorials on how to change sources, install Node.js, and Git for Termux.
+- You can also use an idle phone/computer/tablet to run this project. It is recommended to use the open source software [Termux](https://github.com/termux/termux-app) for Android devices. I recommend using the one I compiled [Termux](https://imorning.lanzouy.com/b071a31ng), with download password: 3vxm. Compared to the original version, it can display QR codes better. Please search for tutorials on how to change sources, install Node.js, and git for Term yourself.
 
-- Due to Tencent's interface, first-time login requires scanning code verification. Subsequently, you can directly log in using a token.
+- Due to Tencent's interface limitations, the user needs to scan the verification code for the first login, but can then log in directly using a token.
 
 ## How to Use
-1. Clone this project to your local or server.
-2. Run `npm install` at the root path of the project.
-3. Create `.env` file with the following content:
-    ```ini
-    qq=xxxxxxx
-    password=xxxxxxxx
-    # Openai Key
-    openai_api_key=sk-xxxxxxxxxxxx
-    # Reverse proxy, default (https://api.openai.com/v1) if not set
-    base_path="https://api.openai.com/v1"
-    # Model used by default as gpt-3.5-turbo
-    model=gpt-3.5-turbo
-    # Maximum number of tokens for continuous conversation, default as 2048(unused)
-    max_token=2048
-    # Temperature, value between 0~2, higher means more creativity
-    temperature=2.0
-    # Clear Keywords, multiple keywords separated by commas
-    clear_keywords="清空,再见"
-    # Set a default system role
-    system_role=""
-    # Whether to enable private message replies (default is enabled, true = enable, false = disable)
-    private=true
-    # Whether to enable group message replies (default is disabled, true = enable, false = disable)
-    group=false
-    ```
-4. Run `npm run dev`.
-5. If it is your first time logging in, you need to scan the code to log in. Subsequently, a cached token will be used for login until the token expires.
 
+1. Configure the `git` and `Node.js` environments.
+
+2. Clone this project to your local computer or server:
+
+```bash
+    git clone https://github.com/morningos/chat_qq
+```
+
+3. Run `npm install` in the root path of the project to install related dependencies.
+
+4. Create a `.env` file with the following content:
+
+```ini
+    # QQ account (required)
+    qq=xxxxxxx
+    # Password (required)
+    password=xxxxxxxx
+    # Openai Key (required)
+    openai_api_key=sk-xxxxxxxxxxxx
+    # Reverse Proxy, if not set, will be default(https://api.openai.com/v1). 
+    # It is suggested that you should change it to your own reverse proxy.
+    # This (reverse proxy) must be set up in unsupported countries or regions
+    base_path="https://api.openai.com/v1"
+    # The model used, defaults to gpt-3.5-turbo.
+    model=gpt-3.5-turbo
+    # Maximum tokens for continuous conversation, defaults to 204(unused)
+    max_token=2048
+    # Temperature value between 0.0 and 2.0, higher values are more creative.
+    temperature=2.0
+    # Clear Keywords (reset the keywords of the dialogue, separate multiple keywords with commas)
+    clear_keywords="清空,再见,早安,午安,晚安"
+    # Set a default rule
+    system_role=""
+    # Whether to open private message reply(default is on,set true to trun on and false is off)
+    private=true
+    # Whether to open group message reply(default is off)
+    group=true
+```
+
+5. Run `npm run dev`.
+
+6. If this is the first-time login, you need to scan the code to log in. Subsequently, token login will be used by caching locally. As long as you do not modify the 'devices.json' file under the data directory or change the, in theory, the token will remain valid permanently.
 
 ## License
 ```

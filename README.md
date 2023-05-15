@@ -2,28 +2,41 @@
 
 [English](./README_EN.md) / 简体中文
 
-- 本项目基于chatgpt的QQ机器人，在国内环境的话，注意需要使用一个反向代理绕过openai的检查，具体的名单可以参考openai官方网址：[Supported countries and territories](https://platform.openai.com/docs/supported-countries/supported-countries-and-territories)
+- 本项目基于chatgpt的QQ机器人，**在不受支持的地区部署的话，注意需要使用一个反向代理绕过openai的检查**，具体的名单可以参考openai官方网址：[Supported countries and territories](https://platform.openai.com/docs/supported-countries/supported-countries-and-territories)
 
-- 你也可以使用一个闲置的手机/电脑/平板来运行本项目，Android设备推荐使用开源软件[Termux](https://github.com/termux/termux-app)，这里提供一个已经编译好的Termux的下载地址：[蓝奏云](https://imorning.lanzouy.com/b071a31ng) 密码:3vxm，关于Termux的换源、安装nodejs、git的教程，请自行搜索。
+- 你也可以使用一个闲置的手机/电脑/平板来运行本项目，Android设备推荐使用开源软件[Termux](https://github.com/termux/termux-app)，推荐使用我编译好的[Termux](https://imorning.lanzouy.com/b071a31ng) 下载密码:3vxm，相比起原版可以更好的显示二维码，关于Termux的换源、安装nodejs、git的教程，请自行搜索。
 
 - 由于腾讯接口的原因，首次登录需要扫码验证登录，后续可以直接使用token登录。
 
 ## 如何使用
-1. 将本项目克隆岛你本地或者你的服务器上。
-2. 在项目根路径运行 `npm install`。
-3. 创建 `.env` 文件，内容设置如下：
+
+1. 配置 `git` 和 `nodejs` 环境。
+
+2. 将本项目克隆到你本地或者你的服务器上:
+
+    ```shell
+    git clone https://github.com/morningos/chat_qq
+    ```
+
+3. 在项目根路径运行 `npm install` 安装相关依赖。
+
+4. 创建 `.env` 文件，内容设置如下：
+
     ```ini
+    # QQ账号(必须)
     qq=xxxxxxx
+    # 密码(必须)
     password=xxxxxxxx
-    # Openai Key
+    # Openai Key(必须)
     openai_api_key=sk-xxxxxxxxxxxx
     # 反向代理，不设置则为默认(https://api.openai.com/v1)
-    base_path="https://api.openai.com/v1"
+    # 建议修改成你自己的反向代理(不支持的国家或者地区必须设置这个)
+    base_path="https://openai.public-api.cn/v1"
     # 使用的模型，默认为gpt-3.5-turbo
     model=gpt-3.5-turbo
     # 连续对话的最大token，默认为2048(未启用)
     max_token=2048
-    # temperature，值在0~2之间，越高代表着更加有创造性
+    # temperature，值在0.0~2.0之间，越高代表着更加有创造性
     temperature=2.0
     # Clear Keywords(重置对话的关键字，多个关键字中间使用英文逗号分开)
     clear_keywords="清空,再见,早安,午安,晚安"
@@ -34,8 +47,10 @@
     # 是否打开群消息回复(默认关闭, 开启:true  关闭:false)
     group=true
     ```
-4. 运行 `npm run dev`
-5. 如果是第一次登录，则需要扫码登录，后续会使用缓存在本地的token登录，直到token失效。
+
+5. 运行 `npm run dev`
+
+6. 如果是第一次登录，则需要扫码登录，后续会使用缓存在本地的token登录，data目录下的`devices.json`文件不修改或者不修改密码的话，理论上token会一直有效。
 
 
 ## License
