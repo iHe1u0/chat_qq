@@ -97,7 +97,9 @@ async function replyTextMessage(uid = 10000, received_message = "") {
     } catch (error) {
         if (error.response) {
             console.error(error.response.data);
-            return error.response.data.error.message;
+            if (error.response.data.error.message) {
+                return error.response.data.error.message;
+            }
         } else {
             console.error(error.message);
         }
