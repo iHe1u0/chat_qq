@@ -95,6 +95,7 @@ async function replyTextMessage(uid = 10000, received_message = "") {
 
         return reply_message;
     } catch (error) {
+        delete_history(uid);
         if (error.response) {
             console.error(error.response.data);
             if (error.response.data.error.message) {
@@ -103,7 +104,6 @@ async function replyTextMessage(uid = 10000, received_message = "") {
         } else {
             console.error(error.message);
         }
-        delete_history(uid);
         return error.message;
     } finally {
         if (clear_key.includes(received_message.trim())) {
