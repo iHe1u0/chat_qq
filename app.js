@@ -12,8 +12,6 @@ const config = {
     log_level: "info",
     // 1:Android Phone 2:aPad 3:Android Watch 4:MacOS 5:iPad
     platform: 3,
-    // port
-    port: 1124,
     // Cache users of group?
     reconn_interval: false
 };
@@ -64,7 +62,7 @@ fs.readdirSync(message_handler_dir).forEach(file => {
 });
 
 // Openai API
-require("./ai/openai_api");
+require("./api/openai_api");
 
 process.on("unhandledRejection", (reason, promise) => {
     console.log('Unhandled Rejection at:', promise, 'reason:', reason)

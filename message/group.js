@@ -1,6 +1,6 @@
 "use strict"
 
-const { replyTextMessage } = require("../ai/openai_api");
+const { reply_normal_message: reply_normal_message } = require("../api/openai_api");
 const { client } = require("../app");
 require('dotenv').config();
 
@@ -42,7 +42,7 @@ client.on("message.group", (event) => {
             event.reply(event.message, true);
             return;
         }
-        replyTextMessage(group_id + "_" + sender, raw_message).then(reply_message => {
+        reply_normal_message(group_id + "_" + sender, raw_message).then(reply_message => {
             event.reply(reply_message, true);
         });
     }

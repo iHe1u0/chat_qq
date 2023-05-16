@@ -2,8 +2,9 @@ require("dotenv").config();
 const https = require('https');
 const zlib = require('zlib');
 const { URLSearchParams } = require('url');
+const moment = require("moment/moment");
+const { update } = require("../api/update_api");
 
-const is_wather_on = process.env.weather ? (process.env.weather === 'true' ? true : false) : false;
 const weather_id = process.env.weather_id || "";
 const weather_api_key = process.env.weather_api_key || "";
 
@@ -98,9 +99,44 @@ async function getWeather(city_name) {
         const data = await getWeatherInternal(id);
         return data;
     } catch (error) {
-        // console.error(error);
+        console.log("eoorooror")
         return error;
     }
 }
 
-getWeather("浦东").then(result => console.log(result));
+
+function reply_weather(city_name, events) {
+    console.log(city_name);
+    getWeather(city_name).then(result => {
+        console.log(result);
+        if (result.code && result.code == 200) {
+            const { updateTime, now } = result;
+            const time = moment(updateTime).format("YYYY-MM-DD HH:mm");
+            const content = `
+当前天气:   ${now.text}
+温度:       ${now.temp}℃
+体感温度:   ${now.feelsLike}℃
+风向:       ${now.windDir}
+风力等级:   ${now.windScale}级
+风速:       ${now.windSpeed}公里/小时
+相对湿度:   ${now.humidity}%
+小时降水量: ${now.precip}毫米
+能见度:     ${now.vis}公里
+更新时间:   ${time}
+            `;
+            console.log(content);
+        } else {
+            console.log(result);
+        }
+    });
+}
+
+exports.reply_weather = reply_weather;
+
+const raw_message = '#上海天气';
+if (raw_message.startsWith("#")) {
+    let command = raw_message.replace("#", "");
+    if (command.endsWith("天气")) {
+        reply_weather(command.replace("天气", ""));
+    }
+}

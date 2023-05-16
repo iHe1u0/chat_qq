@@ -55,7 +55,7 @@ function delete_history(uid) {
     }
 }
 
-async function replyTextMessage(uid = 10000, received_message = "") {
+async function reply_normal_message(uid = 10000, received_message = "") {
     let history = [];
     history = read_history(uid);
     const configuration = new Configuration({
@@ -112,4 +112,4 @@ async function replyTextMessage(uid = 10000, received_message = "") {
     }
 }
 
-module.exports = { replyTextMessage };
+module.exports = { reply_normal_message: reply_normal_message };

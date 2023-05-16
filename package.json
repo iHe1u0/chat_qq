@@ -2,9 +2,10 @@
   "name": "chat_qq",
   "version": "1.0.0",
   "description": "A project for qq chat with chatgpt",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "node app.js",
+    "main": "pm2 start node app.js",
     "test": "node test/index.js"
   },
   "author": "iMorning",
@@ -14,6 +15,7 @@
     "gpt-3-encoder": "^1.1.4",
     "icqq": "^0.3.10",
     "jsonfile": "^6.1.0",
+    "moment": "^2.29.4",
     "openai": "^3.2.1",
     "readline-sync": "^1.4.10"
   }

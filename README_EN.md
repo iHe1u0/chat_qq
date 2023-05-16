@@ -22,9 +22,11 @@ English / [简体中文](./README.md)
 
 4. Revise the `example.env` file and rename it to `.env`.
 
-5. Run `npm run dev`.
+5. Run `npm run dev` to log in for the first time. Online update services are not supported in this environment.
 
-6. If this is the first-time login, you need to scan the code to log in. Subsequently, token login will be used by caching locally. As long as you do not modify the 'devices.json' file under the data directory or change the, in theory, the token will remain valid permanently.
+6. If it is the first login, you need to scan the code to log in. The token cached locally will be used for subsequent logins. If the `devices.json` file in the `data` directory is not modified or the password is not changed, theoretically the token will remain valid.
+
+7. When there is no need to scan the code later, you can use the command `npm run main` to log in. After logging in with this method, you can use the command "更新" to update the service online.
 
 ## Contact
 
