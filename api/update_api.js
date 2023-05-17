@@ -3,7 +3,6 @@ require('dotenv').config();
 
 function execute(command) {
     return new Promise((resolve, reject) => {
-        // 使用Promise对象进行封装处理
         exec(command, (error, stdout, stderr) => {
             if (error) {
                 console.log(`执行错误: ${error.message}`);
@@ -13,28 +12,28 @@ function execute(command) {
                 console.log(`stderr报错: ${stderr}`);
                 reject(stderr);
             }
-            // console.log(`stdout信息: ${stdout}`);
-            resolve(stdout.trim()); // 将stdout内容去除空格后reslove出去
+            resolve(stdout.trim());
         });
     });
 }
 
 async function update(event) {
-    const update_command = "git pull --rebase";
-    const restart_comman = "pm2 reload all";
-    event.reply(update_command);
-    try {
-        execute(update_command).then((result) => {
-            console.log(result);
+    const updateCommands = ["git pull --rebase", "npm install"];
+    const restartCommand = "pm2 reload all";
+    for (let i = 0; i < updateCommands.length; i++) {
+        const command = updateCommands[i];
+        try {
+            const result = await execute(command);
             event.reply(result);
-            execute(restart_comman).then((final_result) => {
-                console.log(final_result);
-                event.reply(final_result);
-            });
-        });
+        } catch (err) {
+            event.reply(err);
+        }
+    }
+    try {
+        const final_result = await execute(restartCommand);
+        event.reply(final_result);
     } catch (err) {
         event.reply(err);
-        throw err;
     }
 }
 
