@@ -155,7 +155,7 @@ function reply_weather(city_name, event) {
             const message = [segment.xml(build_weather_xml_msg(city_name, updateTime, now, fxLink))];
             event.reply(message);
         } else {
-            console.log(result);
+            console.log('查询失败😑' + result.toString());
             event.reply(result);
         }
     });
