@@ -26,7 +26,7 @@ English / [简体中文](./README.md)
 
 6. If it is the first login, you need to scan the code to log in. The token cached locally will be used for subsequent logins. If the `devices.json` file in the `data` directory is not modified or the password is not changed, theoretically the token will remain valid.
 
-7. When there is no need to scan the code later, you can use the command `npm run main` to log in. After logging in with this method, you can use the command "更新" to update the service online.
+7. When there is no need to scan the code later, you can use the command `npm run main` to log in. After logging in with this method, you can use the command "#更新" to update the service online.
 
 ## Contact
 
