@@ -104,7 +104,6 @@ async function getWeather(city_name) {
     }
 }
 
-
 function reply_weather(city_name, events) {
     console.log(city_name);
     getWeather(city_name).then(result => {

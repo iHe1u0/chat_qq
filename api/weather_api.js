@@ -104,6 +104,41 @@ async function getWeather(city_name, event) {
     }
 }
 
+function build_weather_xml_msg(data) {
+    const obj = {
+        msg: {
+            '$': {
+                flag: '1',
+                serviceID: '1',
+                brief: '实时天气',
+                templateID: '1',
+                action: 'web',
+                url: 'https://github.com/morningos/chat_qq'
+            },
+            item: [{
+                '$': { layout: '0' },
+                title: 'layout="0"',
+                summary: 'title,summary,picture各占一行均可重复使用，按照Element顺序显示',
+                picture: [{ '$': { cover: `./res/images/weahter/${weather_id}` } }]
+            }],
+            source: {
+                "$": {
+                    // 底部来源App名字
+                    name: "chat qq",
+                    // App的Icon
+                    icon: "https://github.githubassets.com/favicons/favicon.svg",
+                    // 点击后跳转的链接
+                    url: "https://github.com/morningos/chat_qq",
+                    action: "web",
+                    appid: "-1"
+                }
+            }
+        }
+    };
+
+    var builder = new xml2js.Builder();
+    return builder.buildObject(obj);
+}
 
 function reply_weather(city_name, event) {
     getWeather(city_name, event).then(result => {

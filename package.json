@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node app.js",
     "main": "pm2 start node app.js",
-    "test": "node test/index.js"
+    "test": "node test/msg_test.js"
   },
   "author": "iMorning",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "jsonfile": "^6.1.0",
     "moment": "^2.29.4",
     "openai": "^3.2.1",
-    "readline-sync": "^1.4.10"
+    "readline-sync": "^1.4.10",
+    "xml2js": "^0.5.0"
   }
 }
