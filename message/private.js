@@ -1,6 +1,6 @@
 "use strict"
 
-const { reply_normal_message: reply_normal_message } = require("../api/openai_api");
+const { reply_normal_message } = require("../api/openai_api");
 const { update } = require("../api/update_api");
 const { reply_weather } = require("../api/weather_api");
 const { client } = require("../app");

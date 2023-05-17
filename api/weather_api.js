@@ -4,6 +4,7 @@ const zlib = require('zlib');
 const { URLSearchParams } = require('url');
 const moment = require("moment/moment");
 const { segment } = require("icqq");
+const xml2js = require('xml2js');
 
 const weather_id = process.env.weather_id || "";
 const weather_api_key = process.env.weather_api_key || "";
@@ -96,7 +97,6 @@ async function getWeather(city_name, event) {
     try {
         const city = await getCity(city_name);
         const { name, id } = city.location[0];
-        event.reply(`正在查询${name}天气`);
         const data = await getWeatherInternal(id);
         return data;
     } catch (error) {
@@ -104,7 +104,14 @@ async function getWeather(city_name, event) {
     }
 }
 
-function build_weather_xml_msg(data) {
+function build_weather_xml_msg(city_name, updateTime, now, fxLink) {
+    const time = moment(updateTime).format("YYYY-MM-DD HH:mm");
+    let summary = `${now.text}  气温:${now.temp}℃  湿度:${now.humidity}%\n`;
+    summary += `风速：${now.windSpeed}公里/小时 (${now.windDir}${now.windScale}级)`;
+    if (now.precip > 0) {
+        summary += "\n";
+        summary += `小时降水量：${now.precip}毫米`;
+    }
     const obj = {
         msg: {
             '$': {
@@ -113,20 +120,20 @@ function build_weather_xml_msg(data) {
                 brief: '实时天气',
                 templateID: '1',
                 action: 'web',
-                url: 'https://github.com/morningos/chat_qq'
+                url: fxLink
             },
             item: [{
                 '$': { layout: '0' },
-                title: 'layout="0"',
-                summary: 'title,summary,picture各占一行均可重复使用，按照Element顺序显示',
-                picture: [{ '$': { cover: `./res/images/weahter/${weather_id}` } }]
+                title: city_name,
+                summary: summary,
+                // picture: [{ '$': { cover: `https://imorning.oss-cn-hangzhou.aliyuncs.com/res/img/hweather/0.png` } }]
             }],
             source: {
                 "$": {
                     // 底部来源App名字
                     name: "chat qq",
                     // App的Icon
-                    icon: "https://github.githubassets.com/favicons/favicon.svg",
+                    icon: "https://avatars.githubusercontent.com/u/44289789?s=96&v=4",
                     // 点击后跳转的链接
                     url: "https://github.com/morningos/chat_qq",
                     action: "web",
@@ -135,30 +142,17 @@ function build_weather_xml_msg(data) {
             }
         }
     };
-
     var builder = new xml2js.Builder();
+    // console.log(builder.buildObject(obj));
     return builder.buildObject(obj);
 }
 
 function reply_weather(city_name, event) {
     getWeather(city_name, event).then(result => {
+        // console.log(result);
         if (result.code && result.code == 200) {
-            const { updateTime, now } = result;
-            const time = moment(updateTime).format("YYYY-MM-DD HH:mm");
-            const content = `当前天气：${now.text}
-温度：${now.temp}℃
-体感温度：${now.feelsLike}℃
-风向：${now.windDir}
-风力等级：${now.windScale}级
-风速：${now.windSpeed}公里/小时
-相对湿度：${now.humidity}%
-小时降水量：${now.precip}毫米
-能见度：${now.vis}公里
-更新时间：${time}`.trim();
-            const message = [
-                content,
-                // segment.image(`./res/icons/${now.icon}-fill.svg`),
-            ]
+            const { updateTime, now, fxLink } = result;
+            const message = [segment.xml(build_weather_xml_msg(city_name, updateTime, now, fxLink))];
             event.reply(message);
         } else {
             console.log(result);
