@@ -47,7 +47,7 @@ client.on("message.private", (event) => {
         if (command.endsWith("天气") && is_wather_on) {
             reply_weather(command.replace("天气", ""), event);
             return;
-        } else if (command === "更新" && sender == commander.trim()) {
+        } else if (command === "更新" && sender === commander.trim()) {
             update(event);
             return;
         }
