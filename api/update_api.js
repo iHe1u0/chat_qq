@@ -20,6 +20,7 @@ function execute(command) {
 async function update(event) {
     const updateCommands = ["git pull --rebase", "npm install"];
     const restartCommand = "pm2 reload all";
+    event.reply("开始更新@" + (new Date()));
     for (let i = 0; i < updateCommands.length; i++) {
         const command = updateCommands[i];
         try {
