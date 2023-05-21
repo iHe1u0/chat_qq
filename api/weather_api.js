@@ -110,7 +110,7 @@ function build_weather_xml_msg(city_name, updateTime, now, fxLink) {
     summary += `风速：${now.windSpeed}公里/小时 (${now.windDir}${now.windScale}级)`;
     if (now.precip > 0) {
         summary += "\n";
-        summary += `小时降水量：${now.precip}毫米`;
+        summary += `降水量：${now.precip}毫米`;
     }
     const obj = {
         msg: {
