@@ -15,7 +15,7 @@
 2. 将本项目克隆到你本地或者你的服务器上:
 
     ```shell
-    git clone https://github.com/morningos/chat_qq
+    git clone https://github.com/fkkt-55/chat_qq
     ```
 
 3. 在项目根路径运行 `npm install` 安装相关依赖。
@@ -34,7 +34,7 @@
 
 ## License
 ```
-Copyright (c) 2023 iMorning
+Copyright (c) 2023 fkkt-55
 
 "Anti 996" License Version 1.0 (Draft)
 
