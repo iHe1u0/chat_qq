@@ -15,7 +15,7 @@ English / [简体中文](./README.md)
 2. Clone this project to your local computer or server:
 
 ```bash
-    git clone https://github.com/fkkt-55/chat_qq
+    git clone https://github.com/iHe1u0/chat_qq
 ```
 
 3. Run `npm install` in the root path of the project to install related dependencies.
