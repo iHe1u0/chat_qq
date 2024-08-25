@@ -34,7 +34,7 @@ English / [简体中文](./README.md)
 
 ## License
 ```
-Copyright (c) 2023 fkkt-55
+Copyright (c) 2024 coder-cc
 
 "Anti 996" License Version 1.0 (Draft)
 

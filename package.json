@@ -4,7 +4,7 @@
   "description": "A project for qq chat with chatgpt",
   "main": "app.js",
   "scripts": {
-    "dev": "node app.js",
+    "dev": "node index.js",
     "main": "pm2 start node app.js",
     "test": "node test/msg_test.js"
   },

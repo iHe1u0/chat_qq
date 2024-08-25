@@ -65,7 +65,7 @@ client.on("message.private", (event) => {
 
 function build_weather_xml_msg(data) {
 
-    const data = {
+    const xml_data = {
         msg: {
             '$': {
                 flag: '1',
@@ -73,7 +73,7 @@ function build_weather_xml_msg(data) {
                 brief: '卡片简介',
                 templateID: '1',
                 action: 'web',
-                url: 'https://github.com/morningos/chat_qq'
+                url: 'https://github.com/iHe1u0/chat_qq'
             },
             item: [{
                 '$': { layout: '0' },
@@ -88,7 +88,7 @@ function build_weather_xml_msg(data) {
                     // App的Icon
                     icon: "https://github.githubassets.com/favicons/favicon.svg",
                     // 点击后跳转的链接
-                    url: "https://github.com/morningos/chat_qq",
+                    url: "https://github.com/iHe1u0/chat_qq",
                     action: "web",
                     appid: "-1"
                 }
@@ -97,7 +97,7 @@ function build_weather_xml_msg(data) {
     };
 
     var builder = new xml2js.Builder();
-    var xml = builder.buildObject(data);
+    var xml = builder.buildObject(xml_data);
 
     return xml;
 }

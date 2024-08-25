@@ -49,7 +49,7 @@ client.on('system.login.device', (e) => {
     })
 });
 
-client.on("system.online", ()=>console.log("Service is now online!"));
+client.on("system.online", () => console.log("Service is now online!"));
 
 client.login(account, password)
 
